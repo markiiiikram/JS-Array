@@ -1,11 +1,9 @@
 document.addEventListener("DOMContentLoaded", function() {
-    const findButton = document.getElementById("find-button");
     const imageContainer = document.getElementById("imageContainer");
     const emailInput = document.getElementById("emailInput");
-    const galleryOpen = document.getElementById("gallery-open");
+    const chooseEmailSelect = document.querySelector(".chooseEmail");
     const buttonSubmit = document.getElementById("buttonSubmit");
     const buttonSave = document.getElementById("buttonSave");
-    const chooseEmailSelect = document.querySelector(".chooseEmail");
     const galleryContainer = document.getElementById("galleryContainer");
 
     let currentEmail = "";
@@ -17,11 +15,41 @@ document.addEventListener("DOMContentLoaded", function() {
     // Populate chooseEmailSelect with stored emails
     populateChooseEmailSelect();
 
-    // Fetch a random image from Picsum and display it on page load
-    fetchAndDisplayRandomImage();
+    // Function to fetch a random low-resolution image
+    async function fetchRandomImage() {
+        // Fetch a random low-resolution image from picsum.photos
+        const response = await fetch("https://picsum.photos/200/300");
+        if (!response.ok) {
+            throw new Error("Failed to fetch image");
+        }
+        const imageURL = response.url;
+        return imageURL;
+    }
 
-    // Function to fetch a random image from Picsum and display it
-    async function fetchAndDisplayRandomImage() {
+    // Function to update the displayed image
+    function updateImage(imageURL) {
+        // Create a new image element
+        const imageElement = document.createElement("img");
+        imageElement.src = imageURL;
+
+        // Clear previous image and add the new one
+        imageContainer.innerHTML = "";
+        imageContainer.appendChild(imageElement);
+
+        // Update the current image URL
+        currentImageURL = imageURL;
+    }
+
+    // Fetch a random image when the page is loaded
+    fetchRandomImage().then(imageURL => {
+        updateImage(imageURL);
+        currentImageURL = imageURL;
+    });
+
+    // Event listener for the "Find" button
+    buttonSubmit.addEventListener("click", async function() {
+        const newEmail = emailInput.value.trim();
+
         try {
             const imageURL = await fetchRandomImage();
             updateImage(imageURL);
@@ -29,45 +57,23 @@ document.addEventListener("DOMContentLoaded", function() {
         } catch (error) {
             console.error("Error fetching random image:", error);
         }
-    }
-
-    // Function to fetch a random low-resolution image from Picsum
-    async function fetchRandomImage() {
-        const response = await fetch("https://picsum.photos/200/300");
-        if (!response.ok) {
-            throw new Error("Failed to fetch image");
-        }
-        return response.url;
-    }
-
-    // Function to update the displayed image
-    function updateImage(imageURL) {
-        const imageElement = document.createElement("img");
-        imageElement.src = imageURL;
-        imageContainer.innerHTML = ""; // Clear previous image
-        imageContainer.appendChild(imageElement);
-        currentImageURL = imageURL;
-    }
-
-    // Event listener for the "Find" button
-    findButton.addEventListener("click", async function() {
-        fetchAndDisplayRandomImage();
-    });
-
-    // Event listener for the "Submit" button
-    buttonSubmit.addEventListener("click", function() {
-        const email = emailInput.value.trim();
-        if (email !== "") {
-            addEmailOption(email);
-            emailInput.value = ""; // Clear the input field
-        }
     });
 
     // Function to add a new email option to the select element and local storage
     function addEmailOption(email) {
+        // Check if email format is valid
+        const isValidEmail = validateEmail(email);
+        if (!isValidEmail) {
+            alert("Please enter a valid email address.");
+            return;
+        }
+
+        // Check if email already exists
         if (!emailData[email]) {
             emailData[email] = [];
             localStorage.setItem("emailData", JSON.stringify(emailData));
+
+            // Add email to chooseEmailSelect
             const option = document.createElement("option");
             option.textContent = email;
             chooseEmailSelect.appendChild(option);
@@ -88,23 +94,28 @@ document.addEventListener("DOMContentLoaded", function() {
     buttonSave.addEventListener("click", function() {
         if (currentImageURL) {
             const selectedEmail = chooseEmailSelect.value;
-            if (selectedEmail === "Choose your Email") {
-                alert("Please select an email before saving.");
-                return;
-            }
             emailData[selectedEmail].push(currentImageURL);
             localStorage.setItem("emailData", JSON.stringify(emailData));
-            updateGallery(currentImageURL);
-            currentImageURL = "";
+            updateGallery(selectedEmail, currentImageURL);
         } else {
             alert("Please generate an image before saving.");
         }
     });
 
-    // Function to update the gallery with the saved images
-    function updateGallery(imageURL) {
-        const imageElement = document.createElement("img");
-        imageElement.src = imageURL;
-        galleryContainer.appendChild(imageElement);
+    // Function to update the gallery with saved images for a specific email
+    function updateGallery(email, imageURL) {
+        const galleryImages = emailData[email];
+        galleryContainer.innerHTML = "";
+        galleryImages.forEach(imageURL => {
+            const img = document.createElement("img");
+            img.src = imageURL;
+            galleryContainer.appendChild(img);
+        });
+    }
+
+    // Function to validate email format
+    function validateEmail(email) {
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        return emailRegex.test(email);
     }
 });
