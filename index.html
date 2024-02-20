@@ -4,14 +4,60 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>JS Array</title>
+    <link rel="stylesheet"  href="style/css/application.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;900&display=swap" rel="stylesheet">
+
+</head>
+
+
+
+<body>
     <div class="main-container">
         <div class="container">
-            <div class="email"></div>
-            
-        </div>
-    </div>
-</head>
-<body>
     
+            <div class="image">
+                <div class="find-image">
+                    <div class="image-container" id="imageContainer">
+                        <!-- Add an ID to the image for easy access -->
+                        <!-- <img id="random-image" src="https://picsum.photos/200/300?random" alt="picsum"> -->
+                    </div>
+                </div>
+            </div>
+    
+            <div class="text">Create an account, generate random images and save them to your gallery!</div>
+    
+            <form id="form">
+                <div class="email">
+                    <input id="emailInput" class="input-email" type="text" placeholder="Enter Email">
+                    <button id="buttonSubmit" type="button" class="button-email">Add Email</button>
+                </div>
+            </form>
+            <select class="chooseEmail">
+                <option>Choose your Email</option>
+            </select>
+            <div class="gallery-container" id="galleryContainer">
+                <span class="icon-pictures"></span>
+                <span class="ftr-text">Gallery</span>
+                <div id="gallery"></div>
+            </div>
+        </div>
+        <footer>
+            <div class="find">
+                <span class="icon-spinner" id="find-button">
+                    <span class="ftr-text">Find</span>
+                </span>
+            </div>
+            <div class="save" id="buttonSave">
+                <span class="icon-save-disk">
+                    <span class="ftr-text">Save</span>
+                </span>
+            </div>
+         
+        </footer>
+    </div>
+    
+     <script src="js/jquery-3.7.1.min.js" ></script>
+     <!-- <script src="js/jquery-migrate-1.4.1.js"></script> -->
+     <script src="js/script.js"></script>
 </body>
 </html>

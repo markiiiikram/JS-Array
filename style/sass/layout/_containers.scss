@@ -1,0 +1,80 @@
+.container{
+    padding: 0px 15px 0px 15px;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+}
+.image{
+    display:flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 30px;
+    margin-bottom: 50px;
+}
+
+
+.image-container{
+    background-color: grey;
+    width: 100%;
+    padding: 15px;
+    border-radius: 15px;
+}
+.image-container img{
+    border-radius: 15px;
+    box-shadow: 0 5px 10px;
+    width: 300px;
+}
+
+footer{
+    display: flex;
+    justify-content: space-around;
+    position: sticky;
+    bottom: 0;
+    color: white;
+    [class^="icon-"]{
+        margin-right: 10px;
+    }
+    background-color: rgb(61, 61, 61);
+}
+footer > div{
+    border-radius: 5px;
+    background-color: green;
+    padding: 5px 15px;
+    cursor: pointer;
+}
+footer > div:hover{
+    background-color: blue;
+}
+
+
+#gallery {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px; /* Adjust the gap between images */
+  }
+  
+  .gallery-image {
+    width: 150px; /* Adjust the width of each image */
+    height: 150px; /* Adjust the height of each image */
+    object-fit: cover; /* Ensure the image covers the entire space */
+  }
+
+@media (orientation:landscape){
+    .container{
+        flex-direction: row;
+        align-items: center;
+    }
+    .text{
+        width: 30%;
+        padding: 0px 15px;
+    }
+    .email{
+        display:flex;
+        flex-direction: column;
+        gap: 10px;
+    }
+}
