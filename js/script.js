@@ -40,10 +40,10 @@ document.addEventListener("DOMContentLoaded", function() {
     // Function to fetch a random low-resolution image
     async function fetchRandomImage() {
         // // Generate a random image ID within the range of 1 to 1080
-        // const imageId = getRandomNumberInRange(1, 1080);
+        const imageId = getRandomNumberInRange(1, 1080);
         
         // Construct the image URL with the generated image ID
-        const imageURL = `https://picsum.photos/500/800`;
+        const imageURL = `https://picsum.photos/id/${imageId}/500/800`;
 
         // Return the constructed image URL
         return imageURL;
