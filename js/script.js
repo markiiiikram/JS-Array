@@ -55,8 +55,8 @@ document.addEventListener("DOMContentLoaded", function() {
         const imageId = getRandomNumberInRange(1, 1080);
         
         // Construct the image URL with the generated image ID
-        const imageURL = `https://picsum.photos/id/${imageId}/500/800`;
-
+        const imageURL = `https://picsum.photos/seed/${imageId}/200/300`;
+        
         // Return the constructed image URL
         return imageURL;
     }
@@ -73,15 +73,30 @@ document.addEventListener("DOMContentLoaded", function() {
     // Event listener for the "Find" button
     findButton.addEventListener("click", async function() {
         console.log("Find button clicked");
+        // Show loading text
+        imageContainer.innerHTML = "Loading...";
         try {
             const imageURL = await fetchRandomImage();
             updateImage(imageURL);
             currentImageURL = imageURL;
         } catch (error) {
             console.error("Error fetching random image:", error);
+            // If an error occurs, try fetching a new random image
+            retryFetchRandomImage();
         }
     });
 
+    // Function to retry fetching a random image
+    async function retryFetchRandomImage() {
+        try {
+            const imageURL = await fetchRandomImage();
+            updateImage(imageURL);
+            currentImageURL = imageURL;
+        } catch (error) {
+            console.error("Error retrying to fetch random image:", error);
+            showAlert("Failed to load image. Please try again later.");
+        }
+    }
 ////////////////////////////////////////////////////////////
 ///////////////// Email Handling
 ////////////////////////////////////////////////////////////
@@ -92,22 +107,28 @@ document.addEventListener("DOMContentLoaded", function() {
         // Check if email format is valid
         const isValidEmail = validateEmail(email);
         if (!isValidEmail) {
-            showAlert("Please enter a valid email address.");
+            showAlert("Please enter a valid email address (e.g., example@example.com).");
             return;
         }
-
+    
+        // Check if email is empty
+        if (email.trim() === "") {
+            showAlert("Email address cannot be empty.");
+            return;
+        }
+    
         // Check if email already exists
         if (!emailData[email]) {
             emailData[email] = [];
             localStorage.setItem("emailData", JSON.stringify(emailData));
-
+    
             // Add email to chooseEmailSelect
             const option = document.createElement("option");
             option.textContent = email;
             chooseEmailSelect.appendChild(option);
-            
-            // Show alert message
-            showAlert("Email has been saved.");
+            showAlert("Email has been added successfully.");
+        } else {
+            showAlert("Email address already exists.");
         }
     }
 
