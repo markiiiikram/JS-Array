@@ -5,12 +5,13 @@ document.addEventListener("DOMContentLoaded", function() {
     const buttonSubmit = document.getElementById("buttonSubmit");
     const buttonSave = document.getElementById("buttonSave");
     const galleryContainer = document.getElementById("galleryContainer");
-    const form = document.getElementById("form");
     const alertContainer = document.getElementById("alertContainer");
-    const findSpan = document.getElementById("find-button");
 
     let currentEmail = "";
     let currentImageURL = "";
+
+    // Hide the save button at the beginning
+    buttonSave.style.display = "none";
 
     // Retrieve emails and images from local storage
     let emailData = JSON.parse(localStorage.getItem("emailData")) || {};
@@ -38,11 +39,11 @@ document.addEventListener("DOMContentLoaded", function() {
 
     // Function to fetch a random low-resolution image
     async function fetchRandomImage() {
-        // Generate a random image ID within the range of 1 to 1080
-        const imageId = getRandomNumberInRange(1, 1080);
+        // // Generate a random image ID within the range of 1 to 1080
+        // const imageId = getRandomNumberInRange(1, 1080);
         
         // Construct the image URL with the generated image ID
-        const imageURL = `https://picsum.photos/id/${imageId}/200/300`;
+        const imageURL = `https://picsum.photos/500/800`;
 
         // Return the constructed image URL
         return imageURL;
@@ -54,9 +55,12 @@ document.addEventListener("DOMContentLoaded", function() {
         currentImageURL = imageURL;
     });
 
-    // Event listener for the "Find" span button
-    findSpan.addEventListener("click", async function() {
-        console.log("Find span clicked");
+    // Get the "find" button element
+    const findButton = document.getElementById("find-button");
+
+    // Event listener for the "Find" button
+    findButton.addEventListener("click", async function() {
+        console.log("Find button clicked");
         try {
             const imageURL = await fetchRandomImage();
             updateImage(imageURL);
@@ -94,6 +98,9 @@ document.addEventListener("DOMContentLoaded", function() {
         const email = emailInput.value.trim();
         addEmailOption(email);
         populateChooseEmailSelect();
+
+        // Show the save button after adding or selecting an email
+        buttonSave.style.display = "inline-block";
     });
 
     // Manually handle form submission
@@ -126,7 +133,7 @@ document.addEventListener("DOMContentLoaded", function() {
         updateGallery(selectedEmail);
 
         // Enable or disable the save button based on the selected email
-        buttonSave.disabled = selectedEmail === "Choose your Email";
+        buttonSave.style.display = selectedEmail === "Choose your Email" ? "none" : "inline-block";
     });
 
     // Function to update the gallery with stored images for a specific email
@@ -182,10 +189,14 @@ document.addEventListener("DOMContentLoaded", function() {
     }
 
     // Function to display an alert message
-    function showAlert(message) {
-        alertContainer.textContent = message;
-        setTimeout(() => {
-            alertContainer.textContent = "";
-        }, 3000);
-    }
+// Function to display an alert message
+function showAlert(message) {
+    alertContainer.textContent = message;
+    alertContainer.classList.remove("hidden"); // Remove the "hidden" class to show the alert container
+
+    setTimeout(() => {
+        alertContainer.classList.add("hidden"); // Add the "hidden" class to hide the alert container after 5 seconds
+    }, 5000);
+}
+
 });
