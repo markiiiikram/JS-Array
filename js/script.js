@@ -1,3 +1,7 @@
+////////////////////////////////////////////////////////////
+///////////////// DOM Element Retrieval and Initialization
+////////////////////////////////////////////////////////////
+
 document.addEventListener("DOMContentLoaded", function() {
     const imageContainer = document.getElementById("imageContainer");
     const emailInput = document.getElementById("emailInput");
@@ -12,6 +16,10 @@ document.addEventListener("DOMContentLoaded", function() {
 
     // Hide the save button at the beginning
     buttonSave.style.display = "none";
+
+////////////////////////////////////////////////////////////
+///////////////// Local Storage Handling
+////////////////////////////////////////////////////////////
 
     // Retrieve emails and images from local storage
     let emailData = JSON.parse(localStorage.getItem("emailData")) || {};
@@ -36,6 +44,10 @@ document.addEventListener("DOMContentLoaded", function() {
             chooseEmailSelect.appendChild(option);
         }
     }
+
+////////////////////////////////////////////////////////////
+///////////////// Image Fetching and Display
+////////////////////////////////////////////////////////////
 
     // Function to fetch a random low-resolution image
     async function fetchRandomImage() {
@@ -70,6 +82,10 @@ document.addEventListener("DOMContentLoaded", function() {
         }
     });
 
+////////////////////////////////////////////////////////////
+///////////////// Email Handling
+////////////////////////////////////////////////////////////
+
     // Function to add a new email option to the select element and local storage
     function addEmailOption(email) {
         console.log("Submitted email:", email);
@@ -89,6 +105,9 @@ document.addEventListener("DOMContentLoaded", function() {
             const option = document.createElement("option");
             option.textContent = email;
             chooseEmailSelect.appendChild(option);
+            
+            // Show alert message
+            showAlert("Email has been saved.");
         }
     }
 
@@ -177,6 +196,10 @@ document.addEventListener("DOMContentLoaded", function() {
         }
     });
 
+////////////////////////////////////////////////////////////
+///////////////// Utility Functions
+////////////////////////////////////////////////////////////
+
     // Function to generate a random number within a specified range
     function getRandomNumberInRange(min, max) {
         return Math.floor(Math.random() * (max - min + 1)) + min;
@@ -188,11 +211,18 @@ document.addEventListener("DOMContentLoaded", function() {
         return emailRegex.test(email);
     }
 
-    // Function to display an alert message
 // Function to display an alert message
 function showAlert(message) {
     alertContainer.textContent = message;
     alertContainer.classList.remove("hidden"); // Remove the "hidden" class to show the alert container
+
+    // Temporarily change background color to green for "Email has been saved" message
+    if (message === "Email has been saved.") {
+        alertContainer.style.backgroundColor = "green";
+        setTimeout(() => {
+            alertContainer.style.backgroundColor = ""; // Reset background color after 5 seconds
+        }, 5000);
+    }
 
     setTimeout(() => {
         alertContainer.classList.add("hidden"); // Add the "hidden" class to hide the alert container after 5 seconds
