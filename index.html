@@ -1,66 +1,69 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>JS Array</title>
-    <link rel="stylesheet"  href="style/css/application.css">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;900&display=swap" rel="stylesheet">
-
-</head>
-
-
-
-<body>
+    <link href="style/css/lightbox.css" rel="stylesheet" />
+    <link rel="stylesheet" href="style/css/application.css" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;900&display=swap"
+      rel="stylesheet" />
+    <script src="js/jquery-3.7.1.min.js"></script>
+  </head>
+  <body class="css-selector">
     <div class="main-container">
-        <div class="container">
-    
-            <div class="image">
-                <div class="find-image">
-                    <div class="image-container" id="imageContainer">
-                        <!-- Add an ID to the image for easy access -->
-                        <!-- <img id="random-image" src="https://picsum.photos/200/300?random" alt="picsum"> -->
-                    </div>
-                </div>
+      <div class="container">
+        <div class="image">
+          <div class="find-image">
+            <div class="image-container" id="imageContainer">
+              <!-- Add an ID to the image for easy access -->
+              <!-- <img id="random-image" src="https://picsum.photos/200/300?random" alt="picsum"> -->
+              <a data-lightbox="123"
+                ><img src="/images/pexels-photo-2371901.webp"
+              /></a>
             </div>
-    
-            <h1 class="text">Create an account, generate random images and save them to your gallery!</h1>
-    
-            <form id="form">
-                <div class="email">
-                    <input id="emailInput" class="input-email" type="text" placeholder="Enter Email">
-                    <span id="buttonSubmit" class="button-email">Add Email</span>
-                </div>
-            </form>
-            <div id="alertContainer" class="hidden"></div>
-            <h2 class="textEmail">Choose your Email</h2>
-            <select class="chooseEmail">
-                
-             
-            </select>
-            <div class="gallery-container" id="galleryContainer">
-                <span class="icon-pictures"></span>
-                <h3 class="ftr-text">Gallery</h3>
-                <div id="gallery"></div>
-            </div>
+          </div>
         </div>
-       
+
+        <h1 class="text">
+          Create an account, generate random images and save them to your
+          gallery!
+        </h1>
+
+        <form id="form">
+          <div class="email">
+            <input
+              id="emailInput"
+              class="input-email"
+              type="text"
+              placeholder="Enter Email" />
+            <span id="buttonSubmit" class="button-email">Add Email</span>
+          </div>
+        </form>
+        <div id="alertContainer" class="hidden"></div>
+        <h2 class="textEmail">Choose your Email</h2>
+        <select class="chooseEmail"></select>
+        <div class="gallery-container" id="galleryContainer">
+          <span class="icon-pictures"></span>
+          <h3 class="ftr-text">Gallery</h3>
+          <div id="gallery"></div>
+        </div>
+      </div>
     </div>
     <footer>
-        <div class="find" id="find-button">
-            <span class="icon-spinner" >
-                <span class="ftr-text">Find</span>
-            </span>
-        </div>
-        <div class="save" id="buttonSave">
-            <span class="icon-save-disk">
-                <span class="ftr-text">Save</span>
-            </span>
-        </div>
-     
+      <div class="find" id="find-button">
+        <span class="icon-spinner">
+          <span class="ftr-text">Find</span>
+        </span>
+      </div>
+      <div class="save" id="buttonSave">
+        <span class="icon-save-disk">
+          <span class="ftr-text">Save</span>
+        </span>
+      </div>
     </footer>
-     <script src="js/jquery-3.7.1.min.js" ></script>
-     <!-- <script src="js/jquery-migrate-1.4.1.js"></script> -->
-     <script src="js/script.js"></script>
-</body>
+    <script src="js/lightbox-plus-jquery.min.js"></script>
+    <script src="js/script.js"></script>
+  </body>
 </html>
