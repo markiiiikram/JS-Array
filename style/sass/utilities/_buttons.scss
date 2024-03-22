@@ -1,36 +1,37 @@
 .button-email {
-    padding: 10px 20px;
-    font-size: 16px;
-    color: #fff;
-    border:1px solid white;
-    border-radius: 5px;
-    cursor: pointer;
-    background: rgba(50, 176, 215, 0.2);
-    border-radius: 10px;
-    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
-    backdrop-filter: blur(8.7px);
-    -webkit-backdrop-filter: blur(8.7px);
+  padding: 10px 20px;
+  font-size: 16px;
+  color: #fff;
+  border: 1px solid white;
+  border-radius: 5px;
+  cursor: pointer;
+  background: rgba(50, 176, 215, 0.2);
+  border-radius: 10px;
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(8.7px);
+  -webkit-backdrop-filter: blur(8.7px);
 }
 
 .button-email:hover {
   background: rgba(53, 23, 255, 0.2);
 }
 
-.input-email{
-    height: 45px;
-    border: 1px solid;
-    border-radius: 3px;
-    outline:0;
-    padding-left: 15px;
-    
+.input-email {
+  height: 45px;
+  border: 1px solid;
+  border-radius: 3px;
+  outline: 0;
+  padding-left: 15px;
+  border-color: white;
 }
-.input-email:focus-visible, .input-email:focus{
-    // background-color: rgba(246, 243, 243, 0.3);
-    // border-color: lightcyan;
-    // border-color: yellow;
-    outline: 0;
-    border-color: rgb(91, 14, 255);
-    outline: 0;
-    box-shadow: inset 0 1px 1px rgba(232, 156, 14,.075), 0 0 8px rgba(91, 14, 255, 0.874);
+.input-email:focus-visible,
+.input-email:focus {
+  // background-color: rgba(246, 243, 243, 0.3);
+  // border-color: lightcyan;
+  // border-color: yellow;
+  outline: 0;
+  border-color: white;
+  outline: 0;
+  box-shadow: inset 0 1px 1px rgba(232, 156, 14, 0.075),
+    0 0 8px rgba(255, 255, 255, 0.874);
 }
-

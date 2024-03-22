@@ -12,17 +12,12 @@
     <script src="js/jquery-3.7.1.min.js"></script>
   </head>
   <body class="css-selector">
+    <div id="alertContainer" class="hidden"></div>
     <div class="main-container">
       <div class="container">
         <div class="image">
           <div class="find-image">
-            <div class="image-container" id="imageContainer">
-              <!-- Add an ID to the image for easy access -->
-              <!-- <img id="random-image" src="https://picsum.photos/200/300?random" alt="picsum"> -->
-              <a data-lightbox="123"
-                ><img src="/images/pexels-photo-2371901.webp"
-              /></a>
-            </div>
+            <div class="image-container" id="imageContainer"></div>
           </div>
         </div>
 
@@ -41,9 +36,14 @@
             <span id="buttonSubmit" class="button-email">Add Email</span>
           </div>
         </form>
-        <div id="alertContainer" class="hidden"></div>
-        <h2 class="textEmail">Choose your Email</h2>
+
+        <h2 class="textEmail">Add the images to your email</h2>
+        <br />
+        <br />
+        <p>Submit your email and choose from the options below</p>
+
         <select class="chooseEmail"></select>
+
         <div class="gallery-container" id="galleryContainer">
           <span class="icon-pictures"></span>
           <h3 class="ftr-text">Gallery</h3>

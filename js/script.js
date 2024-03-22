@@ -124,16 +124,28 @@ document.addEventListener("DOMContentLoaded", function () {
       emailData[email] = [];
       localStorage.setItem("emailData", JSON.stringify(emailData));
 
+      // Remove the "Choose your Email" option if it exists
+      const chooseEmailOption = chooseEmailSelect.querySelector(
+        'option[value="Choose your Email"]'
+      );
+      if (chooseEmailOption) {
+        chooseEmailSelect.removeChild(chooseEmailOption);
+      }
+
       // Add email to chooseEmailSelect
       const option = document.createElement("option");
       option.textContent = email;
       chooseEmailSelect.appendChild(option);
       showAlert("Email has been added successfully.");
+      alertContainer.style.backgroundColor = "green";
+
+      // Automatically select the newly added email
+      chooseEmailSelect.value = email;
     } else {
       showAlert("Email address already exists.");
+      alertContainer.style.backgroundColor = "red";
     }
   }
-
   // Event listener for the "Submit" button
   buttonSubmit.addEventListener("click", function () {
     console.log("Submit button clicked");
@@ -217,9 +229,11 @@ document.addEventListener("DOMContentLoaded", function () {
         updateGallery(currentEmail);
       } else {
         showAlert("This image is already saved.");
+        alertContainer.style.backgroundColor = "red";
       }
     } else {
       showAlert("Please generate an image before saving.");
+      alertContainer.style.backgroundColor = "red";
     }
   });
 
