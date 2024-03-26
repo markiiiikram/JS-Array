@@ -199,6 +199,13 @@ document.addEventListener("DOMContentLoaded", function () {
       // Append the image to the anchor
       anchor.appendChild(img);
 
+      // // Create a span element for the icon-x
+      // const iconSpan = document.createElement("span");
+      // iconSpan.classList.add("icon-x");
+
+      // // Append the icon span to the anchor
+      // anchor.appendChild(iconSpan);
+
       // Append the anchor to the gallery container
       galleryContainer.appendChild(anchor);
     });
