@@ -55,7 +55,7 @@ document.addEventListener("DOMContentLoaded", function () {
     const imageId = getRandomNumberInRange(1, 1080);
 
     // Construct the image URL with the generated image ID
-    const imageURL = `https://picsum.photos/seed/${imageId}/500/500`;
+    const imageURL = `https://picsum.photos/seed/${imageId}/900/900`;
 
     // Return the constructed image URL
     return imageURL;
@@ -136,7 +136,9 @@ document.addEventListener("DOMContentLoaded", function () {
       const option = document.createElement("option");
       option.textContent = email;
       chooseEmailSelect.appendChild(option);
-      showAlert("Email has been added successfully.");
+      showAlert(
+        "Email has been added successfully. Please select it from the drop down"
+      );
       alertContainer.style.backgroundColor = "green";
 
       // Automatically select the newly added email
